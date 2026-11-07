@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan d'implantation – Matériel informatique</title>
+<style>
+:root{--ink:#0f172a;--mut:#64748b;--line:#cbd5e1;--bd:#334155;--bg:#eef2f6;--acc:#1d4ed8;--ok:#15803d;--bad:#b91c1c;--r:8px}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,"Segoe UI",Roboto,Arial,sans-serif}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto}
+.bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 16px;margin-bottom:14px}
+.bar h2{margin:0;font-size:17px}.stats{color:var(--mut);font-size:12px}
+.grp{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer}
+.btn:hover{background:#f1f5f9}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}.btn.pri:hover{background:#1e40af}
+.btn.bad{color:var(--bad);border-color:#fca5a5;background:#fef2f2}.btn.bad:hover{background:#fee2e2}
+.btn.sm{padding:3px 8px;font-size:12px}
+.sheet{background:#fff;border:2px solid var(--bd);border-radius:var(--r);padding:20px}
+.head{text-align:center;border-bottom:2px solid var(--bd);padding-bottom:12px;margin-bottom:20px}
+#title{display:inline-block;margin:0;padding:2px 12px;font-size:28px;font-weight:800;letter-spacing:2px;border:1px dashed transparent;border-radius:4px;cursor:text}
+#title:hover,.name:hover{background:#f8fafc;border-color:var(--line)}
+#title:focus,.name:focus{outline:none;background:#fff;border-color:var(--acc);box-shadow:0 0 0 3px rgba(29,78,216,.15)}
+.sub{color:var(--mut);font-size:12px;letter-spacing:1px}
+.plan{display:grid;grid-template-columns:1fr 60px 1fr}
+.wing{display:flex;flex-direction:column;gap:15px}
+.hall{position:relative;display:flex;justify-content:center;align-items:center}
+.hall::before{content:"";position:absolute;inset:0 auto 0 50%;width:4px;margin-left:-2px;background:var(--bd)}
+.hall span{position:relative;writing-mode:vertical-rl;background:#f1f5f9;border:1px dashed var(--mut);border-radius:4px;padding:10px 4px;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--mut)}
+.card{position:relative;background:#fff;border:2px solid var(--bd);border-radius:6px;padding:10px 12px;break-inside:avoid}
+#wl .card::after,#wr .card::after{content:"";position:absolute;top:50%;width:30px;height:2px;background:var(--bd)}
+#wl .card::after{right:-32px}#wr .card::after{left:-32px}
+#wb{margin-top:16px;position:relative;display:flex;flex-direction:column;gap:12px}
+#wb::before{content:"";position:absolute;top:-16px;left:50%;width:4px;height:16px;margin-left:-2px;background:var(--bd)}
+.card header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1.5px solid #e2e8f0;padding-bottom:6px;margin-bottom:6px}
+.name{font-size:15px;font-weight:800;padding:2px 6px;border:1px dashed transparent;border-radius:4px;cursor:text}
+.acts{display:flex;gap:4px}
+ul{list-style:none;margin:0;padding:0;font-size:12px}
+ul.two{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:4px 0;border-bottom:1px dashed #e2e8f0}
+.row .d{font-weight:600;color:#334155}
+.tags{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.tag{font:700 10px Consolas,monospace;padding:1px 5px;border:1px solid #e2e8f0;border-radius:3px;background:#f8fafc}
+.tag.inv{color:var(--acc);background:#eff6ff;border-color:#bfdbfe}
+.empty{color:#94a3b8;font-style:italic;padding:4px 0}
+dialog{border:0;border-radius:10px;padding:22px;width:min(840px,calc(100% - 24px));max-height:90vh;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(15,23,42,.55)}
+#dlgC{width:min(420px,calc(100% - 24px))}
+dialog h3{margin:0 0 14px}
+label{display:block;font-size:12px;font-weight:700;color:var(--bd)}
+input,select{width:100%;padding:8px;margin-top:4px;border:1px solid var(--line);border-radius:6px;background:#fff;font-weight:400}
+.g2{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:16px}
+.er{display:grid;grid-template-columns:1.3fr 1fr .9fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.er input,.er select{margin:0}.mono{font-family:Consolas,monospace;font-weight:700}
+dialog footer{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px}
+th,td{border:1px solid var(--bd);padding:7px 8px;text-align:left}th{background:#f1f5f9}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.sig div{border:1px solid var(--bd);height:90px;padding:8px;font-size:11px;display:flex;flex-direction:column;justify-content:space-between}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:9px 16px;border-radius:6px;opacity:0;pointer-events:none;transition:.2s;z-index:9999}
+#toast.show{opacity:1;transform:translate(-50%,0)}#toast.err{background:var(--bad)}
+@media screen and (max-width:720px){.plan{display:block}.hall{display:none}.wing{margin-bottom:15px}.card::after{display:none}.er,.g2,ul.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{padding:0;background:#fff}
+.bar,.no-print,#toast{display:none!important}
+dialog{display:none!important}
+.sheet{border:2px solid var(--bd);padding:12px;zoom:.92}
+.name,#title{border:0!important;background:none!important}
+body.pd .sheet{display:none}
+body.pd #dlgD{display:block!important;position:static;width:100%;max-height:none;padding:0;box-shadow:none}
+@page{size:A4 portrait;margin:10mm}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <div><h2>Gestion du matériel informatique</h2><div class="stats" id="stats"></div></div>
+    <div class="grp">
+      <button class="btn pri" data-act="add">Ajouter un bureau</button>
+      <button class="btn" data-act="export">Exporter (JSON)</button>
+      <button class="btn" data-act="import">Importer</button>
+      <button class="btn" data-act="reset">Réinitialiser</button>
+      <button class="btn" data-act="print">Imprimer le plan</button>
+      <input type="file" id="file" accept="application/json" hidden>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <div class="head">
+      <h1 id="title" contenteditable="true" spellcheck="false" title="Cliquez pour renommer le chalet">CHALET 7</h1>
+      <div class="sub">PLAN D'IMPLANTATION DU MATÉRIEL INFORMATIQUE</div>
+    </div>
+    <div class="plan">
+      <div class="wing" id="wl"></div>
+      <div class="hall"><span>COULOIR</span></div>
+      <div class="wing" id="wr"></div>
+    </div>
+    <div id="wb"></div>
+  </main>
+</div>
+
+<dialog id="dlgE"><form id="fE">
+  <h3 id="eT"></h3>
+  <div class="g2">
+    <label>Employé / responsable<input id="eU" required autocomplete="off"></label>
+    <label>Emplacement<select id="eW"><option value="left">Côté gauche</option><option value="right">Côté droit</option><option value="bottom">Bas du couloir</option></select></label>
+  </div>
+  <div id="eI"></div>
+  <button type="button" class="btn" data-act="addrow">Ajouter un équipement</button>
+  <footer><button type="button" class="btn" data-act="close">Annuler</button><button class="btn pri">Enregistrer</button></footer>
+</form></dialog>
+
+<dialog id="dlgD">
+  <h3 style="margin:0;text-transform:uppercase">Fiche de décharge – matériel informatique</h3>
+  <div class="sub" id="dS" style="border-bottom:2px solid #000;padding-bottom:8px;margin-bottom:14px"></div>
+  <p>Employé / responsable : <strong id="dN"></strong><br>Emplacement : <strong id="dC"></strong><br>Date : <strong id="dD"></strong></p>
+  <table><thead><tr><th>Désignation</th><th>N° de série</th><th>N° d'inventaire</th></tr></thead><tbody id="dB"></tbody></table>
+  <p style="font-size:11px;color:#475569">Je soussigné(e) atteste avoir reçu le matériel ci-dessus et m'engage à le conserver sous ma responsabilité.</p>
+  <div class="sig"><div><strong>Service informatique</strong></div><div><strong>Signature de l'employé</strong><span>Mention « Lu et approuvé »</span></div></div>
+  <footer class="no-print"><button class="btn" data-act="close">Fermer</button><button class="btn pri" data-act="printD">Imprimer la décharge</button></footer>
+</dialog>
+
+<dialog id="dlgC"><form method="dialog"><p id="cM" style="margin-top:0"></p>
+  <footer><button class="btn" value="no">Annuler</button><button class="btn pri" value="ok">Confirmer</button></footer></form></dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const KEY='chalet_dynamic_offices_v2',TKEY='chalet_custom_title',WINGS=['left','right','bottom'];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>'off-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const clean=v=>{v=String(v||'').trim();return v==='N/A'?'':v};
+const norm=o=>({id:String(o.id||uid()),wing:WINGS.includes(o.wing)?o.wing:'left',user:String(o.user||'SANS NOM').toUpperCase(),
+  items:(Array.isArray(o.items)?o.items:[]).map(i=>({desc:String(i.desc||''),sn:clean(i.sn),inv:clean(i.inv)}))});
+
+function defaults(){let n=0;const mk=(user,wing,...it)=>({id:'off-'+(++n),wing,user,items:it.map(([desc,sn,inv])=>({desc,sn,inv}))});
+return[
+mk('RAFIKA','left',['PC Dell OptiPlex 7090','CZC9421L8B','INV-001'],['Écran Dell 24 pouces P2419H','CN-0T482R-01','INV-002'],['Imprimante HP LaserJet Pro 404','VNC3K04912','INV-003']),
+mk('NABIL','left',['PC HP ProDesk 400 G7','CZC12389LM','INV-004'],['Écran HP EliteDisplay 24 pouces','6CM0411XYZ','INV-005'],['Scanner à plat Epson V39','Q88K019284','INV-006'],['Onduleur APC Back-UPS 650VA','9B2043X119','INV-007']),
+mk('MESSADH','right',['PC Lenovo ThinkCentre M70','MJ08B491AZ','INV-008'],['Écran Lenovo 22 pouces T22i','VK39100827','INV-009']),
+mk('AMIRI','right',['PC Dell OptiPlex 3080','4CD98101ZZ','INV-010'],['Écran Dell 22 pouces E2220H','CN-018274-99','INV-011']),
+mk('SECRETY','right',['PC Dell OptiPlex 7080','CZC55120AB','INV-012'],['Écran Dell 24 pouces P2419H','CN-0T482R-88','INV-013'],['Imprimante MFP HP LaserJet 428fdw','VNC4K11823','INV-014']),
+mk('DORIA','right',['PC HP 290 G4 Microtower','8CG10298KK','INV-015'],['Écran HP 21.5 pouces P22v','3CQ91827MM','INV-016']),
+mk('MENSRI','bottom',['PC Dell OptiPlex 7090','CZC992110Q','INV-017'],['Écran Dell 24 pouces P2419H','CN-0T482R-44','INV-018'],['Imprimante Canon i-SENSYS LBP223','KMYL039182','INV-019'],['Onduleur APC Back-UPS 650VA','9B2043X992','INV-020'])]}
+
+let S;
+try{const raw=JSON.parse(localStorage.getItem(KEY));S=Array.isArray(raw)?raw.map(norm):defaults()}catch{S=defaults()}
+let editId=null,tt;
+const find=id=>S.find(o=>o.id===id);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch{toast("Enregistrement local impossible : exportez vos données.",1)}}
+function toast(m,err){const t=$('#toast');t.textContent=m;t.className='show'+(err?' err':'');clearTimeout(tt);tt=setTimeout(()=>t.className='',3200)}
+function ask(msg){return new Promise(r=>{const d=$('#dlgC');$('#cM').textContent=msg;d.returnValue='';d.onclose=()=>r(d.returnValue==='ok');d.showModal()})}
+
+function setTitle(v){v=(v||'').trim()||'CHALET 7';$('#title').textContent=v;document.title=v+" – Plan d'implantation";try{localStorage.setItem(TKEY,v)}catch{}}
+
+function card(o){
+  const li=o.items.map(i=>`<li class="row"><span class="d">${esc(i.desc)}</span><span class="tags"><span class="tag" title="Numéro de série">S/N ${esc(i.sn||'—')}</span>${i.inv?`<span class="tag inv" title="N° d'inventaire">${esc(i.inv)}</span>`:''}</span></li>`).join('')||'<li class="empty">Aucun équipement affecté</li>';
+  return`<article class="card" data-id="${esc(o.id)}"><header><span class="name" contenteditable="true" spellcheck="false" role="textbox" aria-label="Nom de l'employé">${esc(o.user)}</span>
+  <div class="acts no-print"><button class="btn sm" data-act="edit">Modifier</button><button class="btn sm" data-act="dech">Décharge</button><button class="btn sm bad" data-act="del" aria-label="Supprimer le bureau ${esc(o.user)}">Supprimer</button></div></header>
+  <ul class="${o.wing==='bottom'?'two':''}">${li}</ul></article>`}
+
+function render(){
+  for(const[id,w]of[['wl','left'],['wr','right'],['wb','bottom']])$('#'+id).innerHTML=S.filter(o=>o.wing===w).map(card).join('');
+  const n=S.reduce((a,o)=>a+o.items.length,0);
+  $('#stats').textContent=`${S.length} bureau${S.length>1?'x':''} – ${n} équipement${n>1?'s':''}`;
+}
+
+function rowHtml(i={}){return`<div class="er"><input aria-label="Désignation" placeholder="Désignation" value="${esc(i.desc)}"><input class="mono" aria-label="N° de série" placeholder="N° de série" value="${esc(i.sn)}"><input class="mono" aria-label="N° d'inventaire" placeholder="N° d'inventaire" value="${esc(i.inv)}"><button type="button" class="btn sm bad" data-act="delrow" aria-label="Retirer la ligne">✕</button></div>`}
+
+function openEdit(id){
+  editId=id;const o=id?find(id):{user:'',wing:'left',items:[{}]};if(!o)return;
+  $('#eT').textContent=id?'Modifier le bureau':'Nouveau bureau';
+  $('#eU').value=o.user;$('#eW').value=o.wing;
+  $('#eI').innerHTML=o.items.map(rowHtml).join('');
+  $('#dlgE').showModal();$('#eU').focus();
+}
+
+function saveEdit(){
+  const user=$('#eU').value.trim().toUpperCase();if(!user)return;
+  const items=[...$('#eI').children].map(r=>{const[desc,sn,inv]=[...r.querySelectorAll('input')].map(x=>x.value.trim());return{desc,sn,inv}})
+    .filter(i=>i.desc||i.sn||i.inv).map(i=>({...i,desc:i.desc||'Équipement non spécifié'}));
+  const others=S.filter(o=>o.id!==editId).flatMap(o=>o.items),seen=new Set();
+  for(const i of items)for(const[k,l]of[['sn','N° de série'],['inv',"N° d'inventaire"]]){
+    const v=i[k].toLowerCase();if(!v)continue;
+    if(seen.has(k+v)||others.some(x=>x[k].toLowerCase()===v))return toast(`${l} déjà utilisé : ${i[k]}`,1);
+    seen.add(k+v)}
+  const wing=$('#eW').value;
+  if(editId)Object.assign(find(editId),{user,wing,items});else S.push({id:uid(),user,wing,items});
+  save();render();$('#dlgE').close();toast('Bureau enregistré');
+}
+
+function openDech(id){
+  const o=find(id);if(!o)return;const ch=$('#title').textContent.trim();
+  $('#dN').textContent=o.user;$('#dC').textContent=ch;$('#dS').textContent='Département informatique / '+ch;
+  $('#dD').textContent=new Date().toLocaleDateString('fr-FR');
+  $('#dB').innerHTML=o.items.map(i=>`<tr><td><strong>${esc(i.desc)}</strong></td><td class="mono">${esc(i.sn||'—')}</td><td class="mono">${esc(i.inv||'—')}</td></tr>`).join('')||'<tr><td colspan="3">Aucun équipement</td></tr>';
+  $('#dlgD').showModal();
+}
+
+async function delOffice(id){const o=find(id);if(o&&await ask(`Supprimer le bureau « ${o.user} » et ses ${o.items.length} équipement(s) ?`)){S=S.filter(x=>x.id!==id);save();render();toast('Bureau supprimé')}}
+
+function exportData(){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify({title:$('#title').textContent,offices:S},null,2)],{type:'application/json'}));
+  a.download=`plan-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+async function importData(f){
+  if(!f)return;
+  try{
+    const d=JSON.parse(await f.text()),list=Array.isArray(d)?d:d.offices;
+    if(!Array.isArray(list)||!list.length)throw 0;
+    if(!await ask(`Remplacer les données actuelles par ${list.length} bureau(x) importé(s) ?`))return;
+    S=list.map(norm);if(d.title)setTitle(d.title);save();render();toast('Import réussi');
+  }catch{toast('Fichier invalide : sélectionnez un export JSON de cette application.',1)}
+  $('#file').value='';
+}
+
+const A={
+  add:()=>openEdit(null),
+  edit:id=>openEdit(id),dech:id=>openDech(id),del:id=>delOffice(id),
+  addrow:()=>{$('#eI').insertAdjacentHTML('beforeend',rowHtml());$('#eI').lastElementChild.querySelector('input').focus()},
+  delrow:(_,b)=>b.closest('.er').remove(),
+  close:(_,b)=>b.closest('dialog').close(),
+  export:exportData,import:()=>$('#file').click(),print:()=>print(),
+  printD:()=>{document.body.classList.add('pd');print()},
+  reset:async()=>{if(await ask('Réinitialiser tous les bureaux et le titre aux valeurs par défaut ?')){S=defaults();try{localStorage.removeItem(KEY);localStorage.removeItem(TKEY)}catch{}setTitle('CHALET 7');render();toast('Données réinitialisées')}}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b)A[b.dataset.act]?.(b.closest('[data-id]')?.dataset.id,b)});
+$('#fE').addEventListener('submit',e=>{e.preventDefault();saveEdit()});
+$('#file').addEventListener('change',e=>importData(e.target.files[0]));
+addEventListener('afterprint',()=>document.body.classList.remove('pd'));
+document.addEventListener('keydown',e=>{if(e.target.isContentEditable){if(e.key==='Enter'){e.preventDefault();e.target.blur()}}});
+document.addEventListener('focusout',e=>{
+  const t=e.target;
+  if(t.id==='title')setTitle(t.innerText);
+  else if(t.classList?.contains('name')){
+    const o=find(t.closest('[data-id]').dataset.id),v=t.innerText.trim().toUpperCase();
+    if(o&&v&&v!==o.user){o.user=v;save()}t.textContent=o?o.user:v;
+  }
+});
+
+try{const t=localStorage.getItem(TKEY);if(t)setTitle(t)}catch{}
+render();
+</script>
+</body>
+</html>
